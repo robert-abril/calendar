@@ -9,8 +9,19 @@ import listPlugin from "@fullcalendar/list";
 
 function App() {
   const handleDateClick = function(info) {
-    //Below is the line that changeds the view to the Day View everything that needs calendar can me just used as this.(insert method here)
-    this.changeView("timeGridWeek", info.dateStr);
+    //Below is the line that changeds the view to the Day View everything that needs calendar can be just used as this.(insert method here)
+    // this.changeView("timeGridDay", info.dateStr);
+    this.addEvent(testEvent);
+  };
+
+  const testEvent = {
+    title: "Test",
+    start: "2023-07-26",
+    end: "2023-07-26",
+  };
+
+  const handleSelect = function(info) {
+    this.addEvent(testEvent);
   };
 
   const header = {
@@ -25,6 +36,8 @@ function App() {
       initialView={"dayGridMonth"}
       dateClick={handleDateClick}
       headerToolbar={header}
+      selectable={true}
+      select={handleSelect}
     />
   );
 }
