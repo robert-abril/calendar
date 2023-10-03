@@ -1,23 +1,30 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
+import { createEvent, getAllEvents } from "./db/events";
 
 function App() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const _getEvents = async () => {
+      const gottenEvents = await getAllEvents();
+      setEvents(gottenEvents);
+    };
+    _getEvents();
+  }, []);
+
+  console.log("events :>> ", events);
+
   const header = {
-    left: "prev,next today",
+    left: "prev,next,today",
     center: "title",
     right: "dayGridMonth,timeGridWeek,listWeek",
-  };
-
-  const testEvent = {
-    title: "Test",
-    start: "2023-07-26",
-    end: "2023-07-26",
   };
 
   const handleDateClick = function(info) {
@@ -26,7 +33,6 @@ function App() {
     if ((this.view.type = "dayGridMonth")) {
       this.changeView("timeGridDay", info.dateStr);
     }
-    // this.addEvent(testEvent);
   };
 
   const handleSelect = function(info) {
@@ -40,6 +46,7 @@ function App() {
         end: info.endStr,
       };
       this.addEvent(eventHandler);
+      createEvent(titleStr, info.startStr, info.endStr);
     }
   };
 
@@ -52,6 +59,7 @@ function App() {
       selectable={true}
       select={handleSelect}
       editable={true}
+      events={events}
     />
   );
 }
