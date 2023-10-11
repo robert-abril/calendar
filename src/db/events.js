@@ -1,4 +1,5 @@
 import db from "./firebase";
+// eslint-disable-next-line
 import { doc, collection, addDoc, getDocs } from "firebase/firestore";
 
 export const createEvent = async (title, start, end) => {
