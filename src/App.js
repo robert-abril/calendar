@@ -11,6 +11,7 @@ import { createEvent, getAllEvents } from "./db/events";
 
 function App() {
   const [events, setEvents] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const _getEvents = async () => {
