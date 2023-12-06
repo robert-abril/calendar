@@ -8,6 +8,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { createEvent, getAllEvents } from "./db/events";
+import Modal from "./components/Modal";
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -21,7 +22,7 @@ function App() {
     _getEvents();
   }, []);
 
-  console.log("events :>> ", events);
+  useEffect(() => {}, [setIsOpen]);
 
   const header = {
     left: "prev,next,today",
@@ -35,6 +36,12 @@ function App() {
     if ((this.view.type = "dayGridMonth")) {
       this.changeView("timeGridDay", info.dateStr);
     }
+  };
+
+  const handleEventClick = function(info) {
+    setIsOpen(true);
+    console.log("isOpen :>> ", isOpen);
+    return <Modal setIsOpen={setIsOpen} />;
   };
 
   const handleSelect = function(info) {
@@ -53,16 +60,24 @@ function App() {
   };
 
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin]}
-      initialView={"dayGridMonth"}
-      dateClick={handleDateClick}
-      headerToolbar={header}
-      selectable={true}
-      select={handleSelect}
-      editable={true}
-      events={events}
-    />
+    <div>
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin]}
+        initialView={"dayGridMonth"}
+        dateClick={handleDateClick}
+        eventClick={handleEventClick}
+        headerToolbar={header}
+        selectable={true}
+        select={handleSelect}
+        editable={true}
+        events={events}
+      />
+      {isOpen && (
+        <div className="centered">
+          <Modal setIsOpen={setIsOpen} />
+        </div>
+      )}
+    </div>
   );
 }
 
