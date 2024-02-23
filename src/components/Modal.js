@@ -39,9 +39,18 @@ const Modal = ({ setIsOpen }) => {
             Owner: <input type="text" name="owner"></input>
           </div>
           <div className={styles.modalContent}>
-            Category <select name="Category"></select>
+            Category:{" "}
+            <select name="Category">
+              {categortyTypes.map((categortyType, index) => (
+                <option value={categortyType}>{categortyType}</option>
+              ))}
+            </select>
           </div>
-          <div className={styles.modalContent}>Time</div>
+          <div className={styles.modalContent}>
+            Time:
+            <input type="time" id="startAppt" name="startAppt" /> to{" "}
+            <input type="time" id="endAppt" name="endAppt" />
+          </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
               <button
