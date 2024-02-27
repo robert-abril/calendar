@@ -40,7 +40,7 @@ function App() {
 
   const handleEventClick = function(info) {
     setIsOpen(true);
-    console.log("isOpen :>> ", isOpen);
+    console.log(info);
     return <Modal setIsOpen={setIsOpen} />;
   };
 
