@@ -23,6 +23,7 @@ const categortyTypes = [
 const saveButtonHandler = (description, endTime, startTime, categoryType) => {
   // Here is where I would take the input from the user to make the event on the backend
   // endTime, startTime, category, owner, approved, description
+  //https://react.dev/reference/react-dom/components/input#usage Controlling an input with a state variable
 
   setIsOpen(false);
 };
