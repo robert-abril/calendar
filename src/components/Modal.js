@@ -20,6 +20,13 @@ const categortyTypes = [
   "T3 = Tier 3",
 ];
 
+const saveButtonHandler = (description, endTime, startTime, categoryType) => {
+  // Here is where I would take the input from the user to make the event on the backend
+  // endTime, startTime, category, owner, approved, description
+
+  setIsOpen(false);
+};
+
 const Modal = ({ setIsOpen }) => {
   return (
     <>
@@ -33,7 +40,7 @@ const Modal = ({ setIsOpen }) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            Event: <input type="text" name="event"></input>
+            Description: <input type="text" name="description"></input>
           </div>
           <div className={styles.modalContent}>
             Owner: <input type="text" name="owner"></input>
@@ -54,13 +61,13 @@ const Modal = ({ setIsOpen }) => {
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
               <button
-                className={styles.deleteBtn}
+                className={styles.saveBtn}
                 onClick={() => setIsOpen(false)}
               >
                 Save
               </button>
               <button
-                className={styles.deleteBtn}
+                className={styles.editBtn}
                 onClick={() => setIsOpen(false)}
               >
                 Edit

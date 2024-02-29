@@ -45,17 +45,17 @@ function App() {
   };
 
   const handleSelect = function(info) {
-    // this.addEvent(testEvent);
-    console.log("start date:" + info.startStr + " end date:" + info.endStr);
     if (this.view.type !== "dayGridMonth") {
-      const titleStr = prompt("Enter a title for the event");
-      const eventHandler = {
-        title: titleStr,
-        start: info.startStr,
-        end: info.endStr,
-      };
-      this.addEvent(eventHandler);
-      createEvent(titleStr, info.startStr, info.endStr);
+      // const titleStr = prompt("Enter a title for the event");
+      // const eventHandler = {
+      //   title: titleStr,
+      //   start: info.startStr,
+      //   end: info.endStr,
+      // };
+      // this.addEvent(eventHandler);
+      // createEvent(titleStr, info.startStr, info.endStr);
+      setIsOpen(true);
+      return <Modal setIsOpen={setIsOpen} />;
     }
   };
 
