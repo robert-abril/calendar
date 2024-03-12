@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import React, { useState } from "react";
 
 const categortyTypes = [
   "AGT = Time w/ Agent",
@@ -28,6 +29,12 @@ const handleSave = (description, endTime, startTime, categoryType) => {
 };
 
 const Modal = ({ setIsOpen }) => {
+  const [description, setDescription] = useState("");
+  const [owner, setOwner] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [categoryType, setCategoryType] = useState("");
+
   return (
     <>
       <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
@@ -40,14 +47,15 @@ const Modal = ({ setIsOpen }) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            Description: <input type="text" name="description"></input>
+            Description:{" "}
+            <input type="text" name="description" value={description}></input>
           </div>
           <div className={styles.modalContent}>
-            Owner: <input type="text" name="owner"></input>
+            Owner: <input type="text" name="owner" value={owner}></input>
           </div>
           <div className={styles.modalContent}>
             Category:{" "}
-            <select name="Category">
+            <select name="Category" value={categoryType}>
               {categortyTypes.map((categortyType, index) => (
                 <option value={categortyType}>{categortyType}</option>
               ))}
@@ -55,8 +63,13 @@ const Modal = ({ setIsOpen }) => {
           </div>
           <div className={styles.modalContent}>
             Time:
-            <input type="time" id="startAppt" name="startAppt" /> to{" "}
-            <input type="time" id="endAppt" name="endAppt" />
+            <input
+              type="time"
+              id="startTime"
+              name="startTime"
+              value={startTime}
+            />{" "}
+            to <input type="time" id="endTime" name="endTime" value={endTime} />
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
