@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
-import React, { useState } from "react";
 
 const categortyTypes = [
   "AGT = Time w/ Agent",
