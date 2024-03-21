@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import { createEvent } from "../db/events";
 
 const categortyTypes = [
   "AGT = Time w/ Agent",
