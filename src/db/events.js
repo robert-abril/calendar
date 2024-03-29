@@ -2,12 +2,20 @@ import db from "./firebase";
 // eslint-disable-next-line
 import { doc, collection, addDoc, getDocs } from "firebase/firestore";
 
-export const createEvent = async (title, start, end) => {
+export const createEvent = async (
+  owner,
+  description,
+  endTime,
+  startTime,
+  categoryType
+) => {
   const eventRef = collection(db, "Events");
   const event = {
-    title: title,
-    start: start,
-    end: end,
+    owner: owner,
+    description: description,
+    startTime: startTime,
+    endTime: endTime,
+    categoryType: categoryType,
   };
 
   await addDoc(eventRef, event);

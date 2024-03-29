@@ -21,11 +21,12 @@ const categortyTypes = [
   "T3 = Tier 3",
 ];
 
-const handleSave = (description, endTime, startTime, categoryType) => {
+const handleSave = (owner, description, endTime, startTime, categoryType) => {
   // Here is where I would take the input from the user to make the event on the backend
   // endTime, startTime, category, owner, approved, description
   //https://react.dev/reference/react-dom/components/input#usage Controlling an input with a state variable
-  // setIsOpen(false);
+
+  createEvent(owner, description, endTime, startTime, categoryType);
 };
 
 const Modal = ({ setIsOpen }) => {
@@ -48,14 +49,29 @@ const Modal = ({ setIsOpen }) => {
           </button>
           <div className={styles.modalContent}>
             Description:{" "}
-            <input type="text" name="description" value={description}></input>
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></input>
           </div>
           <div className={styles.modalContent}>
-            Owner: <input type="text" name="owner" value={owner}></input>
+            Owner:{" "}
+            <input
+              type="text"
+              name="owner"
+              value={owner}
+              onChange={(e) => setOwner(e.target.value)}
+            ></input>
           </div>
           <div className={styles.modalContent}>
             Category:{" "}
-            <select name="Category" value={categoryType}>
+            <select
+              name="Category"
+              value={categoryType}
+              onChange={(e) => setCategoryType(e.target.value)}
+            >
               {categortyTypes.map((categortyType, index) => (
                 <option value={categortyType}>{categortyType}</option>
               ))}
@@ -68,14 +84,31 @@ const Modal = ({ setIsOpen }) => {
               id="startTime"
               name="startTime"
               value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
             />{" "}
-            to <input type="time" id="endTime" name="endTime" value={endTime} />
+            to{" "}
+            <input
+              type="time"
+              id="endTime"
+              name="endTime"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+            />
           </div>
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
               <button
                 className={styles.saveBtn}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  handleSave(
+                    owner,
+                    description,
+                    endTime,
+                    startTime,
+                    categoryType
+                  );
+                  setIsOpen(false);
+                }}
               >
                 Save
               </button>

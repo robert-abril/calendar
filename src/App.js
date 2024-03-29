@@ -7,7 +7,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { createEvent, getAllEvents } from "./db/events";
+import { getAllEvents } from "./db/events";
 import Modal from "./components/Modal";
 
 function App() {
@@ -46,14 +46,6 @@ function App() {
 
   const handleSelect = function(info) {
     if (this.view.type !== "dayGridMonth") {
-      // const titleStr = prompt("Enter a title for the event");
-      // const eventHandler = {
-      //   title: titleStr,
-      //   start: info.startStr,
-      //   end: info.endStr,
-      // };
-      // this.addEvent(eventHandler);
-      // createEvent(titleStr, info.startStr, info.endStr);
       setIsOpen(true);
       return <Modal setIsOpen={setIsOpen} />;
     }
