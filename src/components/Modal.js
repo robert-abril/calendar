@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { createEvent } from "../db/events";
+import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const categortyTypes = [
   "AGT = Time w/ Agent",
@@ -32,8 +34,8 @@ const handleSave = (owner, description, endTime, startTime, categoryType) => {
 const Modal = ({ setIsOpen }) => {
   const [description, setDescription] = useState("");
   const [owner, setOwner] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
   const [categoryType, setCategoryType] = useState("");
 
   return (
@@ -79,7 +81,7 @@ const Modal = ({ setIsOpen }) => {
           </div>
           <div className={styles.modalContent}>
             Time:
-            <input
+            {/* <input
               type="time"
               id="startTime"
               name="startTime"
@@ -93,6 +95,24 @@ const Modal = ({ setIsOpen }) => {
               name="endTime"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
+            /> */}
+            <DatePicker
+              selected={startTime}
+              onChange={(date) => setStartTime(date)}
+              showTimeSelect
+              timeFormat="h:mm aa"
+              timeIntervals={30}
+              dateFormat="MM-dd-yyyy HH:mm aa"
+            />{" "}
+            {console.log(startTime)}
+            to{" "}
+            <DatePicker
+              selected={endTime}
+              onChange={(date) => setEndTime(date)}
+              showTimeSelect
+              timeFormat="h:mm aa"
+              timeIntervals={30}
+              dateFormat="MM-dd-yyyy h:mm aa"
             />
           </div>
           <div className={styles.modalActions}>
