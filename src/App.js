@@ -46,8 +46,15 @@ function App() {
 
   const handleSelect = function(info) {
     if (this.view.type !== "dayGridMonth") {
+      console.log(info.start);
       setIsOpen(true);
-      return <Modal setIsOpen={setIsOpen} />;
+      return (
+        <Modal
+          setIsOpen={setIsOpen}
+          startTime={info.start}
+          endTime={info.end}
+        />
+      );
     }
   };
 
