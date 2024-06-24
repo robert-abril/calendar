@@ -50,7 +50,7 @@ const Modal = ({ setIsOpen, startInfo, endInfo }) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            Description:{" "}
+            Title:{" "}
             <input
               type="text"
               name="description"

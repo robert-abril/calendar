@@ -12,9 +12,9 @@ export const createEvent = async (
   const eventRef = collection(db, "Events");
   const event = {
     owner: owner,
-    description: description,
-    startTime: startTime,
-    endTime: endTime,
+    title: description,
+    start: startTime.toISOString(),
+    end: endTime.toISOString(),
     categoryType: categoryType,
   };
 
@@ -25,11 +25,11 @@ const eventRef = collection(db, "Events");
 
 export const getAllEvents = async () => {
   try {
-    const events = await getDocs(eventRef);
-    const event = events.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+    const eventSnapshot = await getDocs(eventRef);
+    const eventList = eventSnapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
     });
-    return event;
+    return eventList;
   } catch (error) {
     console.log("error :>> ", error);
   }
